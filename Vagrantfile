@@ -5,7 +5,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.provider :virtualbox do |box|
       box.linked_clone = true
-      box.customize [ "modifyvm", :id, "--memory", "1024", "--cpus", "1" ]
+      box.customize [ "modifyvm", :id, "--memory", "2048", "--cpus", "1" ]
   end
   
   config.vm.define :jenkins do |box|
