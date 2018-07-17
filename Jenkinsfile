@@ -32,4 +32,5 @@ node {
    }
    stage('Push container to Registry')
         DockerImage.push()
-  }
+   }
+}
