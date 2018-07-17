@@ -1,0 +1,30 @@
+---
+- name: Install Docker
+  hosts: environment
+  become: true
+  
+  tasks:
+  - name: Add docker repo
+    template:
+      src: /vagrant/ansible/docker.repo
+      dest: /etc/yum.repos.d/docker.repo
+
+  - name: Install docker
+    yum:
+      name: docker-engine
+      state: present
+      
+  - name: Start docker
+    service:
+      name: docker
+      state: started
+
+  - name: Enable docker
+    systemd:
+      name: docker
+      enabled: yes
+      
+  - name: Admin access for docker user
+      shell: sudo usermod -aG docker $(whoami)
+      args:
+        executable: /bin/bash
