@@ -76,12 +76,8 @@ sudo yum install -y epel-release
 sudo yum install -y ansible
 ansible --version
 
-sudo tee /etc/ansible/hosts <<-'EOF'
-192.168.100.10
-192.168.100.11
-192.168.100.12
-192.168.100.13
-EOF
+sudo mv /vagrant/ansible/ansible.cfg /etc/ansible/
+sudo mv /vagrant/ansible/hosts /etc/ansible/
 
 ##############################
 # Maven install
