@@ -30,7 +30,7 @@ node {
      docker.withRegistry('http://192.168.100.10:5000') {
      def DockerImage = docker.build("java-app")
    }
-   stage('Push container to Registry')
+     stage('Push container to Registry') {
         DockerImage.push()
    }
 }
