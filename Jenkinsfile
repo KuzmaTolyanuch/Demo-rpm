@@ -17,7 +17,7 @@ node {
       // **       in the global configuration.           
       mvnHome = tool 'Maven-local'
    }
-   stage('Build with mvn') {
+   stage('Build') {
       // Run the maven build
       if (isUnix()) {
          sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean install"
@@ -26,7 +26,7 @@ node {
          server.upload(uploadSpec)
       }
    }
-   stage('Docker build') {
+   stage('Docker build image') {
     def testImage = docker.build("java-image") 
 //    testImage.inside {
 //        sh 'make test'    
