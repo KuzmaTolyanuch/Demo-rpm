@@ -3,7 +3,7 @@ def uploadSpec = """{
   "files": [
     {
       "pattern": "target/*.jar",
-      "target": "demo"
+      "target": "demo/${BUILD_ID}"
     }
  ]
 }"""
