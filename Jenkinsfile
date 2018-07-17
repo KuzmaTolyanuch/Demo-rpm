@@ -26,13 +26,10 @@ node {
          server.upload(uploadSpec)
       }
    }
-   stage('Docker build image') {
-    def testImage = docker.build("java-image") 
-//    testImage.inside {
-//        sh 'make test'    
-    }
- }
-//   stage('Results') {
-  //    junit '*/target/surefire-reports/TEST-*.xml'
-    //  archive 'target/*.jar'
-  // }
+   stage('Docker build') {
+     docker.withRegistry('http://192.168.100.10:5000') {
+     def DockerImage = docker.build("java-app")
+   }
+   stage('Push container to Registry')
+        DockerImage.push()
+  }
