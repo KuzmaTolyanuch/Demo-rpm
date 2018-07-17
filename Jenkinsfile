@@ -25,13 +25,13 @@ node {
          bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean package/)
       }
    }
-   stage('Results') {
+   stage('Build Results') {
       junit '**/target/surefire-reports/TEST-*.xml'
       archive 'target/*.jar'
       server.upload(uploadSpec)
    }
 }
-   stage('Docker build') {
+   stage('Docker image Build') {
       def testImage = docker.build("java-image") 
 \\      testImage.inside {
 \\      sh 'make test'    
