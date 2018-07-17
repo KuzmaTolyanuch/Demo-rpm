@@ -1,15 +1,6 @@
-def server = Artifactory.server 'art'
-def uploadSpec = """{
-  "files": [
-    {
-      "pattern": "target/*.jar",
-      "target": "demo/${BUILD_ID}"
-    }
- ]
-}"""
 node {
    def mvnHome
-   stage('Preparation') { // for display purposes
+   stage('Pull repo') { // for display purposes
       // Get some code from a GitHub repository
       git 'https://github.com/KuzmaTolyanuch/Demo-rpm'
       // Get the Maven tool.
@@ -17,19 +8,30 @@ node {
       // **       in the global configuration.           
       mvnHome = tool 'Maven-local'
    }
-   stage('Build project') {
+   stage('Build code') {
       // Run the maven build
       if (isUnix()) {
          sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean install"
       } else {
          bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean package/)
-         server.upload(uploadSpec)
       }
+      stage('Upload to artifactory') {
+       def server = Artifactory.server 'art'
+       def uploadSpec = """{
+         "files": [
+           {
+             "pattern": "target/*.jar",
+             "target": "demo/${BUILD_ID}/"
+           }
+        ]
+       }"""
+      server.upload(uploadSpec)
    }
-   stage('Docker build and push to registry') {
+   }
+   stage('Build Docker image and push to registry') {
      docker.withRegistry('http://192.168.100.10:5000') {
      def DockerImage = docker.build("java-app")
-     // Push container to Registry
+// Push container to Registry
      DockerImage.push()
   }
 }
