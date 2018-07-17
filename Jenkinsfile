@@ -17,7 +17,7 @@ node {
       // **       in the global configuration.           
       mvnHome = tool 'Maven-local'
    }
-   stage('Build') {
+   stage('Build project') {
       // Run the maven build
       if (isUnix()) {
          sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean install"
@@ -26,11 +26,11 @@ node {
          server.upload(uploadSpec)
       }
    }
-   stage('Docker build') {
+   stage('Docker build and push to registry') {
      docker.withRegistry('http://192.168.100.10:5000') {
      def DockerImage = docker.build("java-app")
-   }
-     stage('Push container to Registry') {
-        DockerImage.push()
-   }
+     // Push container to Registry
+     DockerImage.push()
+  }
+}
 }
