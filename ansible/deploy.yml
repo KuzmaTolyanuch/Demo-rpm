@@ -12,10 +12,10 @@
   # - name: Execute the command in remote shell; stdout goes to the specified file on the remote.
   #   shell: docker run -d -p 80:8080 --name app master:5000/app:{{ image_tag }}
   # #
-  - name: remove container
-    docker_container:
-      name: app
-      state: absent
+  #- name: remove container
+   # docker_container:
+    #  name: app
+     # state: absent
       
   - name: app-container
     docker_container:
