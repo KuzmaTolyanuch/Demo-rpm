@@ -1,5 +1,5 @@
 --- 
-- hosts: webservers
+- hosts: qaenv
   tasks:
   - name: app-container
     docker_container:
