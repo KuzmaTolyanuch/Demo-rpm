@@ -2,7 +2,7 @@
 - name: app-container
   docker_container:
     name: app
-    image: '192.168.100.10:5000/app:{{ image_tag }}'
+    image: '192.168.100.10:5000/java-app'
     recreate: yes
     state: started
     ports:
