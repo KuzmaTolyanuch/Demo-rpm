@@ -28,3 +28,10 @@
       shell: sudo usermod -aG docker $(whoami)
       args:
         executable: /bin/bash
+        
+  - name:  Add Insecure Registry to Docker Engine
+    lineinfile:
+      dest: /etc/docker/daemon.json
+      state: present
+      regexp: '^{}'
+      line: '{ "insecure-registries" : ["192.168.100.10:5000"]  }'
