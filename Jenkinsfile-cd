@@ -1,0 +1,18 @@
+node {
+    stage('Preparation') {
+        git 'https://github.com/ivanov-aleksander/mentors-task1.git'
+}
+    stage('Pull image from registry') {
+       docker.withRegistry('http://192.168.100.10:5000') {
+          image = docker.image('java-app')
+          image.pull()
+}
+}
+    stage('Deploy to Dev') {
+    //ansible-playbook ci-cd.yml -i hosts-qa -e image_tag="ver9"
+
+       ansiblePlaybook(
+           playbook: '/ansible/deploy.yml',
+           inventory: '/ansible/hosts-qa',
+           extras: '-e image_tag="ver${ARTIFACT_VER}"')
+}
