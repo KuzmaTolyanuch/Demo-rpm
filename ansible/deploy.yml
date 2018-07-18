@@ -1,4 +1,5 @@
 --- 
+tasks:
 - name: app-container
   docker_container:
     name: app
