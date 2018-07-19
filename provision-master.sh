@@ -53,7 +53,6 @@ echo "Jenkins install complete, Initial Password is in a local project directory
 ##############################
 # Docker
 ##############################
-
 sudo cp /vagrant/ansible/docker.repo /etc/yum.repos.d/docker.repo
 
 yum install -y docker-engine
@@ -64,10 +63,27 @@ chkconfig docker on
 sudo chmod 666 /var/run/docker.sock
 
 ##############################
-# Ansible
+# Docker registry
+##############################
+sudo yum install -y docker-distribution
+sudo systemctl enable docker-distribution
+sudo systemctl start docker-distribution
+
+##############################
+# Python dependencies
 ##############################
 sudo yum install -y epel-release
-sudo yum install -y ansible
+sudo yum install -y python2-pip
+sudo pip install --upgrade pip
+sudo pip uinstall docker
+sudo pip install docker-py
+
+sudo cp /vagrant/daemon.json /etc/docker/
+
+##############################
+# Ansible
+##############################
+sudo pip install ansible
 ansible --version
 
 sudo cp /vagrant/ansible/ansible.cfg /etc/ansible/
@@ -102,17 +118,6 @@ sudo tee -a /etc/hosts << END
 192.168.100.12 stage
 192.168.100.13 qa
 END
-
-##############################
-# Python dependencies
-##############################
-sudo yum install -y epel-release
-sudo yum install -y python2-pip
-sudo pip install --upgrade pip
-sudo pip uinstall docker
-sudo pip install docker-py
-
-sudo cp /vagrant/daemon.json /etc/docker/
 
 ##############################
 # Run Ansible provisioning
