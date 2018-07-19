@@ -107,4 +107,16 @@ sudo cp /vagrant/daemon.json /etc/docker/
 ##############################
 # ansible-playbook 
 
+##############################
+# Env hostnames
+##############################
+
+sudo tee -a /etc/hosts << END
+192.168.100.10 master
+192.168.100.11 dev
+192.168.100.12 stage
+192.168.100.13 qa
+END
+
+
 echo "Success"
