@@ -1,18 +1,44 @@
-node {
-    stage('Preparation') {
-        git 'https://github.com/KuzmaTolyanuch/cicdlab.git'
-}
-    stage('Pull image from registry') {
-       docker.withRegistry('http://192.168.100.10:5000') {
-          image = docker.image('java-app')
-          image.pull()
-}
-}
-    stage('Deploy to Dev') {
-    //ansible-playbook ansible/deploy.yml -i hosts-qa -e image_tag="ver9"
+pipeline {
+    agent any
+    parameters { string(name: 'ARTIFACT_VER', defaultValue: '1', description: 'Enter artifact version') }
 
-       ansiblePlaybook(
-           playbook: 'ansible/deploy.yml',
-           inventory: 'ansible/hosts-qa',
-           extras: '-e image_tag="ver${ARTIFACT_VER}"')
+
+
+    stages {
+        stage('Download artifact') {
+            steps {
+                git 'https://github.com/KuzmaTolyanuch/cicdlab'
+                script {
+                  def server = Artifactory.server 'art'
+                  def downloadSpec = """{
+                   "files": [
+                    {
+                        "pattern": "demo/app_${params.ARTIFACT_VER}.jar",
+                        "target": "./app.jar"
+                      }
+                   ]
+                  }"""
+                  server.download(downloadSpec)
+                }
+            }
+        }
+        stage('Build docker image') {
+            steps {
+                script {
+                  docker.withRegistry('http://192.168.100.10:5000') {
+                      def customImage = docker.build("192.168.100.10:5000/app:ver${params.ARTIFACT_VER}")
+                      customImage.push() }
+                }
+
+            }
+        }
+        stage('Deploy') {
+            steps {
+                ansiblePlaybook(
+                    playbook: 'ansible/deploy.yml',
+                    inventory: 'ansible/hosts-qa',
+                    extras: "-e image_tag='ver${params.ARTIFACT_VER}'")
+            }
+        }
+    }
 }
