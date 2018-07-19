@@ -1,6 +1,6 @@
 node {
     stage('Preparation') {
-        git 'https://github.com/KuzmaTolyanuch/Demo-rpm.git'
+        git 'https://github.com/KuzmaTolyanuch/cicdlab.git'
 }
     stage('Pull image from registry') {
        docker.withRegistry('http://192.168.100.10:5000') {
