@@ -13,7 +13,9 @@ Vagrant.configure("2") do |config|
       box.vm.box = "centos/7"
       box.vm.network "public_network", ip: "192.168.100.10"
       box.vm.synced_folder ".", "/vagrant"
-      #config.ssh.private_key_path = "keys/master_key"
+      config.ssh.username = 'vagrant'
+      config.ssh.password = 'vagrant'
+      config.ssh.insert_key = false
     
 #     box.vm.provision :shell,
 #         :path => "provision-master.sh",
@@ -27,7 +29,9 @@ Vagrant.configure("2") do |config|
       box.vm.box = "centos/7"
       box.vm.network "public_network", ip: "192.168.100.11"
       box.vm.synced_folder ".", "/vagrant"
-      #config.ssh.private_key_path = "keys/master_key"
+      config.ssh.username = 'vagrant'
+      config.ssh.password = 'vagrant'
+      config.ssh.insert_key = false
 
   end
   
@@ -36,7 +40,9 @@ Vagrant.configure("2") do |config|
       box.vm.box = "centos/7"
       box.vm.network "public_network", ip: "192.168.100.12"
       box.vm.synced_folder ".", "/vagrant"
-      #config.ssh.private_key_path = "keys/master_key"
+      config.ssh.username = 'vagrant'
+      config.ssh.password = 'vagrant'
+      config.ssh.insert_key = false
     
   end
   
@@ -45,7 +51,9 @@ Vagrant.configure("2") do |config|
       box.vm.box = "centos/7"
       box.vm.network "public_network", ip: "192.168.100.13"
       box.vm.synced_folder ".", "/vagrant"
-      #config.ssh.private_key_path = "keys/master_key"
+      config.ssh.username = 'vagrant'
+      config.ssh.password = 'vagrant'
+      config.ssh.insert_key = false
 
   end
 end
