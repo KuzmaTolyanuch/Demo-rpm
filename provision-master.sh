@@ -102,4 +102,9 @@ sudo pip -y install docker-py
 
 sudo cp /vagrant/daemon.json /etc/docker/
 
+##############################
+# Run Ansible provisioning
+##############################
+# ansible-playbook 
+
 echo "Success"
