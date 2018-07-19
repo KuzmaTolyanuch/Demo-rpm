@@ -1,6 +1,6 @@
 ---
 - name: Install Docker
-  hosts: environment
+  hosts: all
   become: true
   
   tasks:
@@ -25,9 +25,9 @@
       enabled: yes
       
   - name: Admin access for docker user
-      shell: sudo usermod -aG docker $(whoami)
-      args:
-        executable: /bin/bash
+    shell: sudo usermod -aG docker $(whoami)
+    args:
+      executable: /bin/bash
         
   - name:  Add Insecure Registry to Docker Engine
     lineinfile:
@@ -46,13 +46,13 @@
     pip:
     name: docker-py
     
-  - name: add hosts
-    shell:
-    cmd: |
-      sudo tee <<EOF
-      192.168.100.10 master
-      192.168.100.11 dev
-      192.168.100.12 stage
-      192.168.100.13 qa
-      EOF
+#  - name: add hosts
+ #   shell:
+  #    cmd: |
+   #   sudo tee <<EOF
+    #  192.168.100.10 master
+     # 192.168.100.11 dev
+     # 192.168.100.12 stage
+     # 192.168.100.13 qa
+     # EOF
       
