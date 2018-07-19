@@ -59,7 +59,9 @@ sudo cp /vagrant/ansible/docker.repo /etc/yum.repos.d/docker.repo
 yum install -y docker-engine
 service docker start
 usermod -aG docker $(whoami)
+usermod -aG docker jenkins
 chkconfig docker on
+sudo chmod 666 /var/run/docker.sock
 
 ##############################
 # Ansible
