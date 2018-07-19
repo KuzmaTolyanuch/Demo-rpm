@@ -15,7 +15,7 @@ Vagrant.configure("2") do |config|
       box.vm.synced_folder ".", "/vagrant"
     
       box.vm.provision :shell,
-         :path => "postinstall.sh.sh",
+         :path => "postinstall.sh",
          :args => "master", 
          :preserve_order => true,
          :run => "always"
@@ -28,7 +28,7 @@ Vagrant.configure("2") do |config|
       box.vm.synced_folder ".", "/vagrant"
       
       box.vm.provision :shell,
-         :path => "postinstall.sh.sh",
+         :path => "postinstall.sh",
          :args => "devenv", 
          :preserve_order => true,
          :run => "always"
@@ -42,7 +42,7 @@ Vagrant.configure("2") do |config|
       box.vm.synced_folder ".", "/vagrant"
       
       box.vm.provision :shell,
-         :path => "postinstall.sh.sh",
+         :path => "postinstall.sh",
          :args => "stageenv", 
          :preserve_order => true,
          :run => "always"
@@ -56,7 +56,7 @@ Vagrant.configure("2") do |config|
       box.vm.synced_folder ".", "/vagrant"
 
       box.vm.provision :shell,
-         :path => "postinstall.sh.sh",
+         :path => "postinstall.sh",
          :args => "qaenv", 
          :preserve_order => true,
          :run => "always"
