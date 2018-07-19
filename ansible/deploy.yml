@@ -1,9 +1,6 @@
 --- 
 - hosts: qaenv
-  tasks:
-  - name: Docker service start
-    service: name=docker state=started enabled=yes
-      
+  tasks:  
   - name: app-container
     docker_container:
       name: app
