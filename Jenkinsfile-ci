@@ -20,8 +20,8 @@ node {
        def uploadSpec = """{
          "files": [
            {
-             "pattern": "target/*.jar",
-             "target": "demo/${BUILD_ID}/"
+              "pattern": "target/*.jar",
+              "target": "demo/app_${BUILD_ID}.jar"
            }
         ]
        }"""
