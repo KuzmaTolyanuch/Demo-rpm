@@ -2,7 +2,7 @@ node {
    def mvnHome
    stage('Pull repo') { // for display purposes
       // Get some code from a GitHub repository
-      git 'https://github.com/KuzmaTolyanuch/Demo-rpm'
+      git 'https://github.com/KuzmaTolyanuch/cicdlab.git'
       // Get the Maven tool.
       // ** NOTE: This 'M3' Maven tool must be configured
       // **       in the global configuration.           
