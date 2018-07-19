@@ -1,19 +1,9 @@
 ---
-- name: Install Docker
-  hosts: all
-  become: true
-  
-  tasks:
-  - name: Add docker repo
-    template:
-      src: /vagrant/ansible/docker.repo
-      dest: /etc/yum.repos.d/docker.repo
-
-  - name: Install docker
+  - name: Environment provision
     yum:
       name: docker-engine
       state: present
-      
+
   - name: Start docker
     service:
       name: docker
@@ -23,27 +13,31 @@
     systemd:
       name: docker
       enabled: yes
-      
+
   - name: Admin access for docker user
     shell: sudo usermod -aG docker $(whoami)
     args:
       executable: /bin/bash
-      
-  - name: Add insecure registry
-    shell: sudo cp ansible/daemon.json /etc/docker/
-    args:
-      executable: /bin/bash
 
-  - name: install packages
+  - copy:
+      src: /vagrant/daemon.json
+      dest: /etc/docker/
+
+
+  - name: install epel
     yum: name={{ item }} state=present
     with_items:
       - epel-release
+
+  - name: install pip
+    yum: name={{ item }} state=present
+    with_items:
       - python2-pip
-  
+
   - name: install docker-py
     pip:
-    name: docker-py
-    
+      name: docker-py
+
 #  - name: add hosts
  #   shell:
   #    cmd: |
@@ -53,4 +47,3 @@
      # 192.168.100.12 stage
      # 192.168.100.13 qa
      # EOF
-      
