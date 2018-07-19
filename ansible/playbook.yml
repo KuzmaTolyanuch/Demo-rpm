@@ -35,3 +35,13 @@
       state: present
       regexp: '^{}'
       line: '{ "insecure-registries" : ["192.168.100.10:5000"]  }'
+
+  - name: install packages
+    yum: name={{ item }} state=present
+    with_items:
+      - epel-release
+      - python2-pip
+  
+  - name: install docker-py
+    pip:
+      name: docker-py
