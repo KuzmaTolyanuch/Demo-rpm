@@ -14,11 +14,11 @@ Vagrant.configure("2") do |config|
       box.vm.network "public_network", ip: "192.168.100.10"
       box.vm.synced_folder ".", "/vagrant"
     
-      box.vm.provision :shell,
-          :path => "provision-master.sh",
-          :args => "master", 
-          :preserve_order => true,
-          :run => "always"
+#     box.vm.provision :shell,
+#         :path => "provision-master.sh",
+#          :args => "master", 
+#         :preserve_order => true,
+#          :run => "always"
   end
   
     config.vm.define :devenv do |box|
