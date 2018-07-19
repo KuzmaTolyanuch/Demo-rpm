@@ -1,0 +1,6 @@
+#commands to copy ssh key to env vms
+ssh-keygen -t rsa -b 4096
+ssh-copy-id vagrant@192.168.100.10
+ssh-copy-id vagrant@192.168.100.11
+ssh-copy-id vagrant@192.168.100.12
+ssh-copy-id vagrant@192.168.100.13
