@@ -97,8 +97,9 @@ sudo systemctl restart artifactory
 ##############################
 sudo yum install -y epel-release
 sudo yum install -y python2-pip
-sudo pip -y uinstall -y docker
-sudo pip -y install docker-py
+sudo pip install --upgrade pip
+sudo pip uinstall docker
+sudo pip install docker-py
 
 sudo cp /vagrant/daemon.json /etc/docker/
 
