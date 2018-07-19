@@ -1,11 +1,11 @@
 [masterenv]
-master ansible_host=192.168.100.10 ansible_ssh_user=vagrant  ansible_ssh_private_key_file=/vagrant/keys/masterenv_key
+master ansible_ssh_user=vagrant  ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
 
 [devenv]
-dev    ansible_host=192.168.100.11 ansible_ssh_user=vagrant  ansible_ssh_private_key_file=/vagrant/keys/devenv_key
+dev    ansible_ssh_user=vagrant  ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
 
 [qaenv]
-qa     ansible_host=192.168.100.12 ansible_ssh_user=vagrant  ansible_ssh_private_key_file=/vagrant/keys/qaenv_key
+qa     ansible_ssh_user=vagrant  ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
 
 [stageenv]
-stage  ansible_host=192.168.100.13 ansible_ssh_user=vagrant  ansible_ssh_private_key_file=/vagrant/keys/stageenv_key
+stage  ansible_ssh_user=vagrant  ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
