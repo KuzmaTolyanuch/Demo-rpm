@@ -1,4 +1,5 @@
-FROM openjdk
-LABEL maintainer="kuzma"
-COPY app.jar /home
-CMD ["java","-jar","/home/app.jar"]
+FROM java:8
+COPY app.jar /opt/app/
+WORKDIR /opt/app/
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "/opt/app/app.jar"]
