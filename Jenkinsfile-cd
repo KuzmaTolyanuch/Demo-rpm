@@ -9,7 +9,7 @@ node {
 }
 }
     stage('Deploy to Dev') {
-    //ansible-playbook ci-cd.yml -i hosts-qa -e image_tag="ver9"
+    //ansible-playbook ansible/deploy.yml -i hosts-qa -e image_tag="ver9"
 
        ansiblePlaybook(
            playbook: 'ansible/deploy.yml',
