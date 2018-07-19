@@ -2,15 +2,15 @@
 - name: Environment provision
   hosts: all
   become: true
-  
+
   tasks:
   - name: Add docker repo
     template:
       src: /vagrant/ansible/docker.repo
       dest: /etc/yum.repos.d/docker.repo
-      
-  - name: Install docker   
-      yum:
+
+  - name: Install docker
+    yum:
       name: docker-engine
       state: present
 
@@ -57,3 +57,4 @@
      # 192.168.100.12 stage
      # 192.168.100.13 qa
      # EOF
+
