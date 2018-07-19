@@ -92,4 +92,14 @@ sudo yum install -y jfrog-artifactory-oss
 sudo systemctl start artifactory
 sudo systemctl restart artifactory
 
+##############################
+# Python dependencies
+##############################
+sudo yum install -y epel-release
+sudo yum install -y python2-pip
+sudo pip -y uinstall -y docker
+sudo pip -y install docker-py
+
+sudo cp /vagrant/daemon.json /etc/docker/
+
 echo "Success"
