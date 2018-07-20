@@ -1,5 +1,6 @@
 --- 
 - hosts: qaenv
+  become: yes
   tasks:  
   - name: app-container
     docker_container:
