@@ -4,7 +4,7 @@
   - name: app-container
     docker_container:
       name: app
-      image: '192.168.100.10:5000/app'
+      image: "192.168.100.10:5000/app:{{image_tag}}"
       recreate: yes
       state: started
       ports:
