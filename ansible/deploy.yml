@@ -32,7 +32,7 @@
 #     ignore_errors: yes
 #
    - name: Pull new image from registry
-     shell: docker pull 192.168.100.10:5000/app{{image_tag}}
+     shell: docker pull 192.168.100.10:5000/app:{{image_tag}}
 
    - name: Run new image on 80 port
-     shell: docker run -d -p 80:8080 --name app 192.168.100.10:5000/app{{image_tag}}
+     shell: docker run -d -p 80:8080 --name app 192.168.100.10:5000/app:{{image_tag}}
