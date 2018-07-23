@@ -15,22 +15,22 @@
 #   become: yes
 
    tasks:
-   - name: Stop&delete old container
-     shell: docker rm -f app
-     ignore_errors: yes
-     
-   - name: Delete old image backup
-     shell: docker rmi 192.168.100.10:5000/app
-     ignore_errors: yes
-    
-   - name: BackUP old image
-     shell: docker tag 192.168.100.10:5000/app
-     ignore_errors: yes
-    
-   - name: Delete old image
-     shell: docker rmi 192.168.100.10:5000/app
-     ignore_errors: yes
-
+#   - name: Stop&delete old container
+#     shell: docker rm -f app
+#     ignore_errors: yes
+#     
+#   - name: Delete old image backup
+#     shell: docker rmi 192.168.100.10:5000/app
+#     ignore_errors: yes
+#    
+#   - name: BackUP old image
+#     shell: docker tag 192.168.100.10:5000/app
+#     ignore_errors: yes
+#    
+#   - name: Delete old image
+#     shell: docker rmi 192.168.100.10:5000/app
+#     ignore_errors: yes
+#
    - name: Pull new image from registry
      shell: docker pull 192.168.100.10:5000/app
 
